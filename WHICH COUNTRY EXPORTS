@@ -1,0 +1,95 @@
+/**
+ * Write a description of CountryExport here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+import edu.duke.* ;
+import org.apache.commons.csv.*;
+public class WhichCountryExport{ 
+    
+       public void listExporters (CSVParser parser , String exportOfInterest) {
+        for (CSVRecord record : parser) { 
+            String export = record.get("Exports") ;
+            
+            if (export.contains(exportOfInterest)) { 
+                
+                String country = record.get ("Country");
+                System.out.println(country); 
+              
+            }
+        }
+    }
+  
+    public void tester() {
+        FileResource fr = new FileResource();
+        CSVParser parser = fr.getCSVParser();
+         
+        countryInfo(parser, "Nauru"); 
+        // I would look for Germany then I would look at their
+            //exports then add the price of the 
+           
+           
+    }
+    public String countryInfo(CSVParser parser, String country){
+        for(CSVRecord record : parser) {    
+        String countries = record.get("Country");
+        if (countries.contains(country)) { 
+            String exports = record.get("Exports");
+            String value = record.get("Value (dollars)"); 
+            String countryInformation = country + ";" + exports + ":" + value;
+            return countryInformation; 
+    }
+    }
+    String noneFound = "NOT FOUND"; 
+    return noneFound; 
+}
+   public void listExportsTwoProducts(CSVParser parser, String 
+   exportItem1, String exportItems2) { 
+      for (CSVRecord record : parser) {
+           String country = record.get("Country");
+          String exports = record.get ("Exports");
+           
+          if (exports.contains(exportItems2) && exports.contains(exportItems2)) { 
+           System.out.println("The country" + country + "exports the two items that you entered.");
+        }
+    }
+}
+   public int numberOfExporters(CSVParser parser, String exportItem){
+       int count = 0;
+       for (CSVRecord record: parser) { 
+           String exports = record.get("Exports");
+           if (exports.contains(exportItem)) {
+               count++; 
+            }
+        }
+        return count;
+    }
+    public void bigExporters(CSVParser parser, String valueInDollarsFormat){
+        for(CSVRecord record: parser) { 
+            String value =record.get("Value (dollars)");
+            if(value.length() > valueInDollarsFormat.length()) {
+                String country = record.get("Country");
+                System.out.print(country + " ");
+                System.out.println(value);
+            }
+        }
+    }
+  //  public void listExporters(CSVParser parser, String exportOfInterest) {
+    //    for(CSVRecord record : parser) {
+    //        String export = record.get("Export"); 
+    //        if(export.contains(exportOfInterest)) { 
+    //            String country = record.get("Country");
+    //            System.out.println(country);
+    //        }
+       // }
+    //}
+   // public void whoExportsCoffee() { 
+    //    FilesResource fr = new FilesResource();
+      //  CSVParser parser = fr.getCSVParser();
+      //  listExporters(parser, "fuel"); 
+    }
+
+
+        
+           
