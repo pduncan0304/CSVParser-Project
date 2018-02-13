@@ -1,0 +1,26 @@
+public void testColdestHouInFile() {
+FileResource fileEvaluated = new FileResource();
+CSVParser parser = fileEvaluated.getCSVParser();
+CSVRecord smallest= coldestHourInFile(parser);
+System.out.println(smallest);
+}   
+public CSVRecord lowestHumidityInFile(CSVParser parser) {
+CSVRecord lowestHumiditySoFa
+r = null;
+for (CSVRecord currentRow : parser ) {
+if (lowestHumiditySoFar == null) {
+lowestHumiditySoFar = currentRow;
+}
+else {
+if (currentRow.get("Humidity").equals("N/A")){
+continue;
+} 
+double currentHumidity = Double.parseDouble(currentRow.get("Humidity"));
+double lowestHumidity = Double.parseDouble(lowestHumiditySoFar.get("Humidity"));
+if (currentHum
+idity < lowestHumidity) {
+lowestHumiditySoFar = currentRow;
+}
+}
+}
+return lowestHumiditySoFar;
